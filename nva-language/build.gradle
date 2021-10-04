@@ -1,0 +1,4 @@
+plugins {
+    id 'nva.language.core.java-conventions'
+    id 'nva.language.core.publish-maven'
+}
