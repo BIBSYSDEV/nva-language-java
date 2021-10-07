@@ -16,6 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LanguageCoreTest {
 
+    public static final URI ENGLISH_URI = URI.create("http://lexvo.org/id/iso639-3/eng");
+    private static final URI ROMANCE_URI = URI.create("http://lexvo.org/id/iso639-5/roa");
+
     @Test
     void shouldHaveIso639_3Code() {
         assertEquals("eng", ENGLISH.getIso6393Code());
@@ -71,7 +74,7 @@ public class LanguageCoreTest {
 
     @Test
     void shouldReturnLanguageUriWhenInputIsValidLanguage() {
-        assertEquals(URI.create("http://lexvo.org/id/iso639-3/eng"), ENGLISH.getLexvoUri());
+        assertEquals(ENGLISH_URI, ENGLISH.getLexvoUri());
     }
 
     @Test
@@ -92,6 +95,18 @@ public class LanguageCoreTest {
     void shouldReturnUndefinedLanguageWhenInputContainsWhiteSpace(String value) {
         var actual = LanguageMapper.getLanguageByIso6393Code(value);
         assertEquals(ENGLISH, actual);
+    }
+
+    @Test
+    void shouldReturnLanguageWhenInputIsUri() {
+        var actual = LanguageMapper.getLanguageByUri(ENGLISH_URI);
+        assertEquals(ENGLISH, actual);
+    }
+
+    @Test
+    void shouldReturnUndefinedLanguageWhenInputIsUnknownUri() {
+        var actual = LanguageMapper.getLanguageByUri(ROMANCE_URI);
+        assertEquals(UNDEFINED_LANGUAGE, actual);
     }
 
     private static Stream<Arguments> nullAndEmpty() {

@@ -2,6 +2,7 @@ package no.unit.nva.language;
 
 import no.unit.nva.language.tooling.JacocoGenerated;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -61,5 +62,12 @@ public final class LanguageMapper {
 
     private static String convertString(String code) {
         return nonNull(code) ? code.trim() : EMPTY_STRING;
+    }
+
+    public static Language getLanguageByUri(URI uri) {
+        return ALL_LANGUAGES.stream()
+                .filter(language -> uri.equals(language.getLexvoUri()))
+                .findAny()
+                .orElse(UNDEFINED_LANGUAGE);
     }
 }
