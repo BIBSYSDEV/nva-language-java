@@ -9,6 +9,8 @@ import java.util.stream.Stream;
 import static java.util.Objects.nonNull;
 import static no.unit.nva.language.LanguageConstants.ALL_LANGUAGES;
 import static no.unit.nva.language.LanguageConstants.BOKMAAL;
+import static no.unit.nva.language.LanguageConstants.MISCELLANEOUS;
+import static no.unit.nva.language.LanguageConstants.MULTIPLE;
 import static no.unit.nva.language.LanguageConstants.NORWEGIAN;
 import static no.unit.nva.language.LanguageConstants.UNDEFINED_LANGUAGE;
 
@@ -55,19 +57,33 @@ public final class LanguageMapper {
                 .equalsIgnoreCase(language.getSme())));
     }
 
+    public static Language getLanguageByUri(URI uri) {
+        return mappedValue(ALL_LANGUAGES.stream()
+                .filter(language -> uri.equals(language.getLexvoUri())));
+    }
+
     private static Language mappedValue(Stream<Language> stream) {
-        var language = stream.findAny().orElse(UNDEFINED_LANGUAGE);
-        return NORWEGIAN.equals(language) ? BOKMAAL : language;
+        return stream.findAny()
+                .map(LanguageMapper::replaceNorwegian)
+                .map(LanguageMapper::replaceMiscellaneous)
+                .orElse(UNDEFINED_LANGUAGE);
+    }
+
+    private static Language replaceMiscellaneous(Language language) {
+        if (MISCELLANEOUS.equals(language)) {
+            return MULTIPLE;
+        }
+        return language;
+    }
+
+    private static Language replaceNorwegian(Language language) {
+        if (NORWEGIAN.equals(language)) {
+            return BOKMAAL;
+        }
+        return language;
     }
 
     private static String convertString(String code) {
         return nonNull(code) ? code.trim() : EMPTY_STRING;
-    }
-
-    public static Language getLanguageByUri(URI uri) {
-        return ALL_LANGUAGES.stream()
-                .filter(language -> uri.equals(language.getLexvoUri()))
-                .findAny()
-                .orElse(UNDEFINED_LANGUAGE);
     }
 }
