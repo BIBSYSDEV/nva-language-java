@@ -37,6 +37,8 @@ public final class LanguageConstants {
             "Islandsk", "Islandsk", "Islánddagiella");
     public static final Language ITALIAN = new Language("it", List.of("ita"), "ita", "Italian",
             "Italiensk", "Italiensk", "Itáliagiella");
+    public static final Language MISCELLANEOUS = new Language(null, List.of("mis"), "mis", "Miscellaneous language",
+            "Annet språk", "Anna språk", null);
     public static final Language MULTIPLE = new Language(null, List.of("mul"), "mul", "Multiple languages",
             "Flere språk", "Fleire språk", "gielat");
     public static final Language NORWEGIAN = new Language("no", List.of("nor"), "nor", "Norwegian",
@@ -64,6 +66,7 @@ public final class LanguageConstants {
         BOKMAAL,
         NYNORSK,
         NORWEGIAN,
+        MISCELLANEOUS,
         DANISH,
         SWEDISH,
         SPANISH,

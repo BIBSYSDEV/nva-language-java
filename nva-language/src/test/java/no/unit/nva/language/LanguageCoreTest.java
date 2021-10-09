@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import static no.unit.nva.language.LanguageConstants.BOKMAAL;
 import static no.unit.nva.language.LanguageConstants.ENGLISH;
 import static no.unit.nva.language.LanguageConstants.GERMAN;
+import static no.unit.nva.language.LanguageConstants.MULTIPLE;
 import static no.unit.nva.language.LanguageConstants.UNDEFINED_LANGUAGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -77,12 +78,6 @@ public class LanguageCoreTest {
         assertEquals(ENGLISH_URI, ENGLISH.getLexvoUri());
     }
 
-    @Test
-    void shouldReturnBokmaalWhenInputIsNorwegian() {
-        var actual = LanguageMapper.getLanguageByBokmaalName("Norsk");
-        assertEquals(BOKMAAL, actual);
-    }
-
     @ParameterizedTest(name = "Should return Undefined language when input is \"{0}\"")
     @MethodSource("nullAndEmpty")
     void shouldReturnUndefinedLanguageWhenInputIsEmpty(String value) {
@@ -109,6 +104,42 @@ public class LanguageCoreTest {
         assertEquals(UNDEFINED_LANGUAGE, actual);
     }
 
+    @ParameterizedTest(name = "Should return re-mapped language {0} when input is URI: {1}")
+    @MethodSource("remappingUri")
+    void shouldReturnReMappedLanguageWhenInputIsUri(Language expected, URI input) {
+        assertEquals(expected, LanguageMapper.getLanguageByUri(input));
+    }
+
+    @ParameterizedTest(name = "Should return re-mapped language {0} when input is ISO 629-2: {1}")
+    @MethodSource("remappingIso639_2")
+    void shouldReturnReMappedLanguageWhenInputIsIso639_2(Language expected, String input) {
+        assertEquals(expected, LanguageMapper.getLanguageByIso6392Code(input));
+    }
+
+    @ParameterizedTest(name = "Should return re-mapped language {0} when input is ISO 629-3: {1}")
+    @MethodSource("remappingIso639_3")
+    void shouldReturnReMappedLanguageWhenInputIsIso639_3(Language expected, String input) {
+        assertEquals(expected, LanguageMapper.getLanguageByIso6393Code(input));
+    }
+
+    @ParameterizedTest(name = "Should return re-mapped language {0} when input is English name: {1}")
+    @MethodSource("remappingEnglish")
+    void shouldReturnReMappedLanguageWhenInputIsEnglish(Language expected, String input) {
+        assertEquals(expected, LanguageMapper.getLanguageByEnglishName(input));
+    }
+
+    @ParameterizedTest(name = "Should return re-mapped language {0} when input is Bokmål name: {1}")
+    @MethodSource("remappingBokmaal")
+    void shouldReturnReMappedLanguageWhenInputIsBokmaal(Language expected, String input) {
+        assertEquals(expected, LanguageMapper.getLanguageByBokmaalName(input));
+    }
+
+    @ParameterizedTest(name = "Should return re-mapped language {0} when input is Nynorsk name: {1}")
+    @MethodSource("remappingNynorsk")
+    void shouldReturnReMappedLanguageWhenInputIsNynorsk(Language expected, String input) {
+        assertEquals(expected, LanguageMapper.getLanguageByNynorskName(input));
+    }
+
     private static Stream<Arguments> nullAndEmpty() {
         return Stream.of(
                 Arguments.of((Object) null),
@@ -126,6 +157,45 @@ public class LanguageCoreTest {
                 Arguments.of("  eng  "),
                 Arguments.of("eng\t"),
                 Arguments.of("eng\r\n")
+        );
+    }
+
+    public static Stream<Arguments> remappingUri() {
+        return Stream.of(
+                Arguments.of(BOKMAAL, URI.create("http://lexvo.org/id/iso639-3/nor")),
+                Arguments.of(MULTIPLE, URI.create("http://lexvo.org/id/iso639-3/mis"))
+        );
+    }
+
+    public static Stream<Arguments> remappingIso639_2() {
+        return Stream.of(
+                Arguments.of(BOKMAAL, "nor"),
+                Arguments.of(MULTIPLE, "mis")
+        );
+    }
+
+    public static Stream<Arguments> remappingIso639_3() {
+        return remappingIso639_2();
+    }
+
+    public static Stream<Arguments> remappingEnglish() {
+        return Stream.of(
+                Arguments.of(BOKMAAL, "norwegian"),
+                Arguments.of(MULTIPLE, "miscellaneous language")
+        );
+    }
+
+    public static Stream<Arguments> remappingBokmaal() {
+        return Stream.of(
+                Arguments.of(BOKMAAL, "norsk"),
+                Arguments.of(MULTIPLE, "annet språk")
+        );
+    }
+
+    public static Stream<Arguments> remappingNynorsk() {
+        return Stream.of(
+                Arguments.of(BOKMAAL, "norsk"),
+                Arguments.of(MULTIPLE, "anna språk")
         );
     }
 }
