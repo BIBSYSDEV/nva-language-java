@@ -24,7 +24,7 @@ publishing {
             pom {
                 name = project.name
                 description = 'The java version of the NVA datamodel'
-                url = 'https://github.com/BIBSYSDEV/nva-datamodel-java'
+                url = 'https://github.com/BIBSYSDEV/nva-language-java'
                 licenses {
                     license {
                         name = 'MIT License'
