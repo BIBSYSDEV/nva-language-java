@@ -51,8 +51,20 @@ public final class LanguageConstants {
             "Portugisisk", "Portugisisk", "Portugálagiella");
     public static final Language RUSSIAN = new Language("ru", List.of("rus"), "rus", "Russian",
             "Russisk", "Russisk", "Ruoššagiella");
-    public static final Language SAMI = new Language("se", List.of(), "sme", "Sami",
-            "Samisk", "Samisk", "Davvisámegiella");
+    public static final Language NORTHERN_SAMI = new Language("se", List.of(), "sme", "Northern Sami",
+            "Nord samisk", "Nord samisk", "Davvisámegiella");
+    public static final Language SOUTHERN_SAMI = new Language(null, List.of(), "sma", "Southern Sami", "Sørsamisk",
+                                                              "Sørsamisk", "Lullisámigiella");
+    public static final Language LULE_SAMI = new Language(null, List.of(), "smj", "Lule sami", "Lule samisk",
+                                                          "Lule samisk", "Julevsámigiella");
+    public static final Language PITE_SAMI = new Language(null, List.of(), "sje", "Pite sami",
+                                                          "Pite samisk", "Pite samisk", "Bidumsámigiella");
+    public static final Language SKOLT_SAMI = new Language(null, List.of(), "sms", "Skolt sami",
+                                                           "Skolte samisk", "Skolte samisk", "Nuortasámigiella");
+    public static final Language ENARE_SAMI = new Language(null, List.of(), "smn", "Enare sami",
+                                                           "Enare samisk", "Enare samisk", "Anárssámigiella");
+    public static final Language KILDIN_SAMI = new Language(null, List.of(), "sjd", "Kildin sami", "Kildin samisk",
+                                                            "Kildin samisk", "Gielddasámigiella");
     public static final Language SPANISH = new Language("es", List.of("spa"), "spa", "Spanish",
             "Spansk", "Spansk", "Spánskkagiella");
     public static final Language SWEDISH = new Language("sv", List.of("swe"), "swe", "Swedish",
@@ -71,7 +83,13 @@ public final class LanguageConstants {
         SWEDISH,
         SPANISH,
         GERMAN,
-        SAMI,
+        NORTHERN_SAMI,
+        SOUTHERN_SAMI,
+        LULE_SAMI,
+        PITE_SAMI,
+        SKOLT_SAMI,
+        ENARE_SAMI,
+        KILDIN_SAMI,
         FRENCH,
         MULTIPLE,
         DUTCH,
