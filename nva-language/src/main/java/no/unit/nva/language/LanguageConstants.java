@@ -52,19 +52,19 @@ public final class LanguageConstants {
     public static final Language RUSSIAN = new Language("ru", List.of("rus"), "rus", "Russian",
             "Russisk", "Russisk", "Ruoššagiella");
     public static final Language NORTHERN_SAMI = new Language("se", List.of(), "sme", "Northern Sami",
-            "Nord samisk", "Nord samisk", "Davvisámegiella");
+            "Nordsamisk", "Nordsamisk", "Davvisámegiella");
     public static final Language SOUTHERN_SAMI = new Language(null, List.of(), "sma", "Southern Sami", "Sørsamisk",
-                                                              "Sørsamisk", "Lullisámigiella");
-    public static final Language LULE_SAMI = new Language(null, List.of(), "smj", "Lule sami", "Lule samisk",
-                                                          "Lule samisk", "Julevsámigiella");
+                                                              "Sørsamisk", "Lullisámegiella");
+    public static final Language LULE_SAMI = new Language(null, List.of(), "smj", "Lule sami", "Lulesamisk",
+                                                          "Lulesamisk", "Julevsámegiella");
     public static final Language PITE_SAMI = new Language(null, List.of(), "sje", "Pite sami",
-                                                          "Pite samisk", "Pite samisk", "Bidumsámigiella");
+                                                          "Pitesamisk", "Pitesamisk", "Bihtánsámegiella");
     public static final Language SKOLT_SAMI = new Language(null, List.of(), "sms", "Skolt sami",
-                                                           "Skolte samisk", "Skolte samisk", "Nuortasámigiella");
+                                                           "Skoltesamisk", "Skoltesamisk", "Nuortasámegiella");
     public static final Language ENARE_SAMI = new Language(null, List.of(), "smn", "Enare sami",
-                                                           "Enare samisk", "Enare samisk", "Anárssámigiella");
-    public static final Language KILDIN_SAMI = new Language(null, List.of(), "sjd", "Kildin sami", "Kildin samisk",
-                                                            "Kildin samisk", "Gielddasámigiella");
+                                                           "Enaresamisk", "Enaresamisk", "Anársámegiella");
+    public static final Language KILDIN_SAMI = new Language(null, List.of(), "sjd", "Kildin sami", "Kildinsamisk",
+                                                            "Kildinsamisk", "Gielddasámegiella");
     public static final Language SPANISH = new Language("es", List.of("spa"), "spa", "Spanish",
             "Spansk", "Spansk", "Spánskkagiella");
     public static final Language SWEDISH = new Language("sv", List.of("swe"), "swe", "Swedish",
