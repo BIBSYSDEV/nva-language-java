@@ -12,12 +12,12 @@ repositories {
 
 wrapper {
     distributionType = Wrapper.DistributionType.ALL
-    gradleVersion = "7.2"
+    gradleVersion = "8.5"
 }
 
 dependencies {
-    implementation group: 'nebula.lint', name: 'nebula.lint.gradle.plugin', version: '17.2.3'
-    implementation group: 'org.jacoco', name: 'org.jacoco.core', version: '0.8.7'
-    implementation group: 'org.jacoco', name: 'org.jacoco.report', version: '0.8.7'
+    implementation group: 'nebula.lint', name: 'nebula.lint.gradle.plugin', version: '19.0.2'
+    implementation group: 'org.jacoco', name: 'org.jacoco.core', version: '0.8.10'
+    implementation group: 'org.jacoco', name: 'org.jacoco.report', version: '0.8.10'
     implementation group: 'io.github.gradle-nexus', name: 'publish-plugin', version: '1.1.0'
 }

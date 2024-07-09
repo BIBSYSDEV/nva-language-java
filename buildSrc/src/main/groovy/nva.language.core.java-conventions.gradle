@@ -5,15 +5,17 @@
 plugins {
     // Apply the java Plugin to add support for Java.
     id 'java'
+    id 'java-library'
     id 'jacoco'
     id 'checkstyle'
+    id 'jacoco-report-aggregation'
     id 'pmd'
     id 'maven-publish'
     id 'base'
 }
 
 group 'com.github.bibsysdev'
-version '1.1'
+version '1.1.1'
 
 dependencies {
     testImplementation libs.bundles.testing
@@ -26,26 +28,27 @@ repositories {
 
 
 tasks.named('test') {
-    // Use JUnit Platform for unit tests.
     useJUnitPlatform()
-
     failFast = true
     testLogging {
-        events('skipped', 'passed', 'failed')
+        events 'skipped', 'passed', 'failed'
     }
-    finalizedBy jacocoTestReport
 }
 
 test {
+    useJUnitPlatform {}
+    failFast = true
+    finalizedBy(jacocoTestReport)
+
     environment "ID_NAMESPACE", "https://www.example.org"
     environment "ALLOWED_ORIGIN", "*"
 }
 
 pmd {
     ruleSetConfig = rootProject.resources.text.fromFile('config/pmd/ruleset.xml')
-    toolVersion = "6.33.0"
     ruleSets = []
     ignoreFailures = false
+    pmdMain {}
 }
 
 checkstyle {
@@ -53,19 +56,19 @@ checkstyle {
     showViolations = true
 }
 
-tasks.withType(Checkstyle) {
+tasks.withType(Checkstyle) .configureEach{
     reports {
-        xml.enabled false
-        html.enabled true
+        xml.required
+        html.required
         html.stylesheet rootProject.resources.text.fromFile('config/checkstyle/checkstyle-simple.xsl')
     }
 }
 
-// jacoco configuration
 check.dependsOn jacocoTestCoverageVerification
 jacocoTestCoverageVerification.dependsOn(jacocoTestReport)
 
 jacocoTestCoverageVerification {
+
     violationRules {
         rule {
             limit {
@@ -74,6 +77,7 @@ jacocoTestCoverageVerification {
                 minimum = 1.000
             }
         }
+
         rule {
             limit {
                 counter = 'CLASS'
@@ -83,14 +87,3 @@ jacocoTestCoverageVerification {
         }
     }
 }
-
-// publish submodules
-task sourcesJar(type: Jar, dependsOn: classes) {
-    archiveClassifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives sourcesJar
-}
-
