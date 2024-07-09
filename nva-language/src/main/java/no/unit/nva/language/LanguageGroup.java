@@ -77,19 +77,20 @@ public class LanguageGroup implements LanguageDescription {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof LanguageGroup that)) {
+        if (!(o instanceof LanguageGroup)) {
             return false;
         }
-        return Objects.equals(eng, that.eng)
-               && Objects.equals(nob, that.nob)
-               && Objects.equals(nno, that.nno)
-               && Objects.equals(sme, that.sme)
-               && Objects.equals(iso6395Code, that.iso6395Code);
+        LanguageGroup that = (LanguageGroup) o;
+        return Objects.equals(getEng(), that.getEng())
+               && Objects.equals(getNob(), that.getNob())
+               && Objects.equals(getNno(), that.getNno())
+               && Objects.equals(getSme(), that.getSme())
+               && Objects.equals(getIso6395Code(), that.getIso6395Code());
     }
 
     @JacocoGenerated
     @Override
     public int hashCode() {
-        return Objects.hash(eng, nob, nno, sme, iso6395Code);
+        return Objects.hash(getEng(), getNob(), getNno(), getSme(), getIso6395Code());
     }
 }
