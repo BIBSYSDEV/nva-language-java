@@ -71,8 +71,10 @@ public final class LanguageConstants {
             "Svensk", "Svensk", "Ruoŧagiella");
     public static final Language UNDEFINED_LANGUAGE = new Language(null, List.of("und"), "und",
             "Unknown language", "Ukjent språk", "Ukjent språk", "Dovdameahttun giella");
+    public static final LanguageGroup SAMI_LANGUAGES = new LanguageGroup("Sami languages", "Samisk språk",
+                                                                         "Samisk språk", "Sámegielat", "smi");
 
-    public static final List<Language> ALL_LANGUAGES = List.of(
+    public static final List<LanguageDescription> ALL_LANGUAGES = List.of(
         UNDEFINED_LANGUAGE,
         ENGLISH,
         BOKMAAL,
@@ -105,7 +107,8 @@ public final class LanguageConstants {
         CHINESE,
         POLISH,
         CZECH,
-        HUNGARIAN
+        HUNGARIAN,
+        SAMI_LANGUAGES
     );
 
     @JacocoGenerated
