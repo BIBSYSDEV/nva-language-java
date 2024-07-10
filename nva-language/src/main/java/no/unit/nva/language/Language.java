@@ -6,10 +6,10 @@ import java.net.URI;
 import java.util.List;
 import java.util.Objects;
 
-public class Language {
-    public static final String LEXVO_URI_TEMPLATE = "http://lexvo.org/id/%s/%s";
-    public static final String ISO_639_3 = "iso639-3";
+public class Language implements LanguageDescription {
 
+    public static final String ISO_639_3 = "iso639-3";
+    private static final String DOES_NOT_HAVE_ISO_639_5_CODE = null;
     private final String iso6391Code;
     private final List<String> iso6392Code;
     private final String iso6393Code;
@@ -33,40 +33,50 @@ public class Language {
         this.sme = sme;
     }
 
+    @Override
     public String getIso6391Code() {
         return iso6391Code;
     }
 
+    @Override
     public List<String> getIso6392Code() {
         return iso6392Code;
     }
 
+
+    @Override
     public String getIso6393Code() {
         return iso6393Code;
     }
 
+    @Override
+    public String getIso6395Code() {
+        return DOES_NOT_HAVE_ISO_639_5_CODE;
+    }
+
+    @Override
     public String getEng() {
         return eng;
     }
 
+    @Override
     public String getNob() {
         return nob;
     }
 
+    @Override
     public String getNno() {
         return nno;
     }
 
+    @Override
     public String getSme() {
         return sme;
     }
 
+    @Override
     public URI getLexvoUri() {
-        return generateLexvoUri(iso6393Code);
-    }
-
-    private URI generateLexvoUri(String code) {
-        return URI.create(String.format(LEXVO_URI_TEMPLATE, Language.ISO_639_3, code));
+        return generateLexvoUri(iso6393Code, ISO_639_3);
     }
 
     @JacocoGenerated

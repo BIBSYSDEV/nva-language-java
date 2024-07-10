@@ -9,11 +9,16 @@ import java.net.URI;
 import java.util.stream.Stream;
 
 import static no.unit.nva.language.LanguageConstants.BOKMAAL;
+import static no.unit.nva.language.LanguageConstants.CHINESE;
 import static no.unit.nva.language.LanguageConstants.ENGLISH;
 import static no.unit.nva.language.LanguageConstants.GERMAN;
 import static no.unit.nva.language.LanguageConstants.MULTIPLE;
+import static no.unit.nva.language.LanguageConstants.NORTHERN_SAMI;
+import static no.unit.nva.language.LanguageConstants.NORWEGIAN;
+import static no.unit.nva.language.LanguageConstants.SAMI_LANGUAGES;
 import static no.unit.nva.language.LanguageConstants.UNDEFINED_LANGUAGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LanguageCoreTest {
 
@@ -50,9 +55,21 @@ public class LanguageCoreTest {
     }
 
     @Test
+    void shouldReturnLanguageDescriptionWhenInputIsLanguageGroup(){
+        var actual = LanguageMapper.getLanguageByEnglishName("Sami languages");
+        assertEquals(SAMI_LANGUAGES, actual);
+    }
+
+    @Test
     void shouldReturnLanguageWhenInputIsBokmaalName() {
         var actual = LanguageMapper.getLanguageByBokmaalName("Engelsk");
         assertEquals(ENGLISH, actual);
+    }
+
+    @Test
+    void shouldReturnLanguageGroupWhenInputIsLanguageGroup(){
+        var actual = LanguageMapper.getLanguageByBokmaalName("Samisk språk");
+        assertEquals(SAMI_LANGUAGES, actual);
     }
 
     @Test
@@ -62,9 +79,21 @@ public class LanguageCoreTest {
     }
 
     @Test
+    void shouldReturnLanguageGroupWhenInputIsNynorskName() {
+        var actual = LanguageMapper.getLanguageByNynorskName("Samisk språk");
+        assertEquals(SAMI_LANGUAGES, actual);
+    }
+
+    @Test
     void shouldReturnLanguageWhenInputIsSamiName() {
         var actual = LanguageMapper.getLanguageBySamiName("Eaŋgalsgiella");
         assertEquals(ENGLISH, actual);
+    }
+
+    @Test
+    void shouldReturnLanguageGroupWhenInputIsSamiName() {
+        var actual = LanguageMapper.getLanguageBySamiName("Sámegielat");
+        assertEquals(SAMI_LANGUAGES, actual);
     }
 
     @Test
@@ -138,6 +167,61 @@ public class LanguageCoreTest {
     @MethodSource("remappingNynorsk")
     void shouldReturnReMappedLanguageWhenInputIsNynorsk(Language expected, String input) {
         assertEquals(expected, LanguageMapper.getLanguageByNynorskName(input));
+    }
+
+    @Test
+    void shouldNotReturnLanguageGroupWhenMappingIso6393Code(){
+        var iso6395Code = "smi";
+        var actual = LanguageMapper.getLanguageByIso6393Code(iso6395Code);
+        assertEquals(UNDEFINED_LANGUAGE, actual);
+    }
+
+    @Test
+    void shouldReturnLanguageGroupWhenMappingIso6395Code(){
+        var iso6395Code = "smi";
+        var actual = LanguageMapper.getLanguageByIso6395Code(iso6395Code);
+        assertEquals(SAMI_LANGUAGES, actual);
+    }
+
+    @Test
+    void shouldReturnUndefinedLanguageWhenMappingAnyPotentialIsoCodeThatDoesNotExist(){
+        var notAnIsoCodeForAnyLanguage = "someString";
+        var actual = LanguageMapper.getLanguageByPotentialIsoCode(notAnIsoCodeForAnyLanguage);
+        assertEquals(UNDEFINED_LANGUAGE, actual);
+    }
+
+    @Test
+    void shouldReturnUndefinedLanguageWhenInputIsNull() {
+        var actual = LanguageMapper.getLanguageByIso6393Code(null);
+        assertEquals(UNDEFINED_LANGUAGE, actual);
+    }
+
+    @Test
+    void shouldReturnLanguageDescriptionWhenMappingAnyPotentialIsoCodeThatIsIso6395(){
+        var iso6395Code = "smi";
+        var actual = LanguageMapper.getLanguageByPotentialIsoCode(iso6395Code);
+        assertEquals(SAMI_LANGUAGES, actual);
+    }
+
+    @Test
+    void shouldReturnLanguageDescriptionWhenMappingAnyPotentialIsoCodeThatIso6391(){
+        var iso6391Code = "en";
+        var actual = LanguageMapper.getLanguageByPotentialIsoCode(iso6391Code);
+        assertEquals(ENGLISH, actual);
+    }
+
+    @Test
+    void shouldReturnLanguageDescriptionWhenMappingAnyPotentialIsoCodeThatIsIso6392(){
+        var iso6392 = "chi";
+        var actual = LanguageMapper.getLanguageByPotentialIsoCode(iso6392);
+        assertEquals(CHINESE, actual);
+    }
+
+    @Test
+    void shouldReturnLanguageDescriptionWhenMappingAnyPotentialIsoCodeThatIsIso6393(){
+        var iso6393 = "sme";
+        var actual = LanguageMapper.getLanguageByPotentialIsoCode(iso6393);
+        assertEquals(NORTHERN_SAMI, actual);
     }
 
     private static Stream<Arguments> nullAndEmpty() {
