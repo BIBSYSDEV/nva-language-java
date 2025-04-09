@@ -1,5 +1,4 @@
 package no.unit.nva.language.tooling;
 
-public @interface JacocoGenerated {
-
-}
+/** Annotation to exclude code such as Override methods from coverage collection. */
+public @interface JacocoGenerated {}
