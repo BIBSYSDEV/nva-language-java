@@ -29,6 +29,12 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build --info
 
+      - name: Verify artifacts
+        env:
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
+        run: ./gradlew publishToMavenLocal
+
       - name: Codacy Coverage Reporter
         uses: codacy/codacy-coverage-reporter-action@89d6c85cfafaec52c72b6c5e8b2878d33104c699 # v1.3.0
         with:
