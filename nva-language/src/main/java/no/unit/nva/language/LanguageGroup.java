@@ -71,7 +71,6 @@ public class LanguageGroup implements LanguageDescription {
         return iso6395Code;
     }
 
-    @JacocoGenerated
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -1,6 +1,5 @@
 package no.unit.nva.language;
 
-import no.unit.nva.language.tooling.JacocoGenerated;
 
 import java.util.List;
 
@@ -111,7 +110,6 @@ public final class LanguageConstants {
         SAMI_LANGUAGES
     );
 
-    @JacocoGenerated
     private LanguageConstants() {
 
     }
