@@ -1,0 +1,5 @@
+# This file can be enabled locally to make `git blame` ignore specific commits
+# Usage: `git config blame.ignoreRevsFile .git-blame-ignore-revs`
+
+# style: Reformat project with Spotless
+892d676b30c2d0595a20a3510dedb5a85e1583c4
