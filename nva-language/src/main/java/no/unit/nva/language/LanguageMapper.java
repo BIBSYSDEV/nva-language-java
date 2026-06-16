@@ -1,7 +1,5 @@
 package no.unit.nva.language;
 
-import no.unit.nva.language.tooling.JacocoGenerated;
-
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Stream;
@@ -17,7 +15,6 @@ import static no.unit.nva.language.LanguageConstants.UNDEFINED_LANGUAGE;
 public final class LanguageMapper {
     public static final String EMPTY_STRING = "";
 
-    @JacocoGenerated
     private LanguageMapper() {
     }
 

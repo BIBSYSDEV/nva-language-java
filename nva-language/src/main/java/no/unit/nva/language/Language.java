@@ -1,6 +1,5 @@
 package no.unit.nva.language;
 
-import no.unit.nva.language.tooling.JacocoGenerated;
 
 import java.net.URI;
 import java.util.List;
@@ -79,7 +78,6 @@ public class Language implements LanguageDescription {
         return generateLexvoUri(iso6393Code, ISO_639_3);
     }
 
-    @JacocoGenerated
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -98,7 +96,6 @@ public class Language implements LanguageDescription {
             && Objects.equals(getSme(), language.getSme());
     }
 
-    @JacocoGenerated
     @Override
     public int hashCode() {
         return Objects.hash(getIso6392Code(), getIso6391Code(), getIso6393Code(),
