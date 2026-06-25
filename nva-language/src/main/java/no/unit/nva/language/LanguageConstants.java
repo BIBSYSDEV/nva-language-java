@@ -56,6 +56,8 @@ public final class LanguageConstants {
   public static final Language ITALIAN =
       new Language(
           "it", List.of("ita"), "ita", "Italian", "Italiensk", "Italiensk", "Itáliagiella");
+  public static final Language KVEN =
+      new Language(null, List.of(), "fkv", "Kven", "Kvensk", "Kvensk", "Kveanagiella");
   public static final Language MISCELLANEOUS =
       new Language(
           null, List.of("mis"), "mis", "Miscellaneous language", "Annet språk", "Anna språk", null);
@@ -147,6 +149,7 @@ public final class LanguageConstants {
           SKOLT_SAMI,
           ENARE_SAMI,
           KILDIN_SAMI,
+          KVEN,
           FRENCH,
           MULTIPLE,
           DUTCH,
