@@ -118,6 +118,8 @@ public final class LanguageConstants {
       new Language("es", List.of("spa"), "spa", "Spanish", "Spansk", "Spansk", "Spánskkagiella");
   public static final Language SWEDISH =
       new Language("sv", List.of("swe"), "swe", "Swedish", "Svensk", "Svensk", "Ruoŧagiella");
+  public static final Language UKRANIAN =
+      new Language("uk", List.of("ukr"), "ukr", "Ukranian", "Ukrainsk", "Ukrainsk", "Ukrainagiella");
   public static final Language UNDEFINED_LANGUAGE =
       new Language(
           null,
@@ -166,6 +168,7 @@ public final class LanguageConstants {
           POLISH,
           CZECH,
           HUNGARIAN,
+          UKRANIAN,
           SAMI_LANGUAGES);
 
   private LanguageConstants() {}
