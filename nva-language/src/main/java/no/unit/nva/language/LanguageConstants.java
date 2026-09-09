@@ -33,6 +33,8 @@ public final class LanguageConstants {
           "Hollánddagiella");
   public static final Language ENGLISH =
       new Language("en", List.of("eng"), "eng", "English", "Engelsk", "Engelsk", "Eaŋgalsgiella");
+  public static final Language FAROESE =
+      new Language("fo", List.of("fao"), "fao", "Faroese", "Færøysk", "Færøysk", "Fársámegiella");
   public static final Language FINNISH =
       new Language("fi", List.of("fin"), "fin", "Finnish", "Finsk", "Finsk", "Suomagiella");
   public static final Language FRENCH =
@@ -169,6 +171,7 @@ public final class LanguageConstants {
           CZECH,
           HUNGARIAN,
           UKRANIAN,
+          FAROESE,
           SAMI_LANGUAGES);
 
   private LanguageConstants() {}
