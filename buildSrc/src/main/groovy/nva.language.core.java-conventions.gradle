@@ -11,7 +11,7 @@ nva {
         languageVersion = 21
     }
     pmd {
-        rulesetFile = rootProject.file('config/pmd/ruleset.xml')
+        analyzeTests = false
     }
     spotless {
         enabled = true

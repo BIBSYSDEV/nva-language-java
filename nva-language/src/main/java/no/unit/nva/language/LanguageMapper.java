@@ -29,10 +29,9 @@ public final class LanguageMapper {
     return (Language)
         mappedValue(
             ALL_LANGUAGES.stream()
-                .filter(
-                    language ->
-                        language.getIso6392Code().stream()
-                            .anyMatch(lang -> convertString(code).equalsIgnoreCase(lang))));
+                .filter(language ->
+                    language.getIso6392Code().stream()
+                        .anyMatch(lang -> convertString(code).equalsIgnoreCase(lang))));
   }
 
   public static Language getLanguageByIso6393Code(String code) {
