@@ -4,8 +4,8 @@ plugins {
 }
 
 dependencies {
-    testImplementation(nvaCatalog.junit.jupiter.api)
-    testImplementation(nvaCatalog.junit.jupiter.params)
-    testRuntimeOnly(nvaCatalog.junit.jupiter.engine)
-    testRuntimeOnly(nvaCatalog.junit.platform.launcher)
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.jupiter.params)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
