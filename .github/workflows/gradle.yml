@@ -31,10 +31,9 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build --info
 
+      # Runs without the signing key, so the publication is verified unsigned. Only the release
+      # workflow (maven-central.yml) gets the key.
       - name: Verify artifacts
-        env:
-          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
-          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
         run: ./gradlew publishToMavenLocal
 
       - name: Codacy Coverage Reporter
